@@ -1,47 +1,15 @@
 ﻿<?php
 /**
  * BRASAP FRAMEWORK START FILE
- * Funções de atalho para DB MYSQL
  *  php version 7.4.3
- * @version 1.0.1-alpha 
- * @author Romeu Gomes de Sousa
- * @category PHP Simplified Framework - No OOP
- * @package BRASAP
- * @license GNU GPL 3.0 - Livre uso e Distribuição
- * @link https://brasap.com.br
- */
-
- /**
- * Realiza a saída com retorno de código de erro http
  * 
- * @param  $_msg   = Mensagem de Erro 
- * @param  $excode = Código de ERRO HTTP conforme tabela: 
- *                 https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
- * @return VOID - Gera um ERRO HTTP conforme especificado
+ * @category PHP_SimplifiedFrameworkNoOOP
+ * @package  BRASAP
+ * @author   Romeu Gomes de Sousa <romeugomes@gmail.com>
+ * @license  GNU GPL 3.0 - Livre uso e Distribuição
+ * @version  GIT:  
+ * @link     https://brasap.com.br
  */
-function _out($_msg, $excode = 200) 
-{
-    $_SESSION['rtStop'] = microtime(true);
-    $time = $_SESSION['rtStop']-$_SESSION['rtStart'];
-    $_SESSION['exec_time']="".round($time, '3')." - Segundos";
-    $_SESSION['HTTP_ERRO']=$excode;
-    $_SESSION['MENSAGEM']=$_msg;
-    if (AMBIENTE == 'DEVELOPER') {
-        http_response_code($excode);
-        echo "<h3>$_msg</h3><pre><br>SESSION========================<br>";
-        print_r($_SESSION);
-        echo "<br>POST=========================<br>";
-        print_r($_POST);
-        echo "<br>GET=========================<br>";
-        print_r($_GET);
-        echo "<br>GET=========================<br>";
-        print_r($_COOKIE);
-        exit($excode);
-    } else {
-        echo "<center><h1>UM ERRO OCORREU!</h1><h2>UMA FALHA IMPEDIU A EXECUÇÃO DE SUA SOLICITAÇÃO, A MENSAGEM RETORNADA PELO SISTEMA FOI:<br>$_msg</h2></center>";
-        exit($excode);
-    }
-}
 
 /**
  * Faz a conexão com o BANCO DE DADOS PDO::MYSQL
@@ -62,36 +30,18 @@ function conectDb()
             $dbpass
         );
     } catch (PDOException $e) {
-        _out("ERRO! Banco de Dados: " . $e->getMessage(),503);
+        _out("ERRO! Banco de Dados: " . $e->getMessage(), 503);
     }
     $r=SqlQuery("SET NAMES utf8");
     return $db;
 }
 
 /**
- * Realiza a saída com retorno de código de erro http
+ * Executa uma QUERY SELECT com ou sem PREPARE
  * 
- * @param $perfil = string - nome da sessão de login
+ * @param $sql = String - Query SQL a ser executada
+ * @param $pr  = Array - Opcional, dos dados em PREPARE
  * 
- * @return BOOLEAN = true se logado com o perfil, 
- *                 false se não logado ou com perfil diferente
- */  
-function logado($perfil = 'LOGON GENERICO') 
-{
-    if ($_SESSION['login']!="$perfil") {
-        _out('PERFIL DE LOGON ERRADO - REFAÇA SEU LOGIN', 200);
-        return false;
-    } else {
-        $_SESSION['login']="$perfil";
-        return true;
-    }
-}
-
-/**
- * Realiza a saída com retorno de código de erro http
- * 
- * @param  $sql = String - Query SQL a ser executada
- * @param  $pr  = Array - Opcional, dos dados em PREPARE
  * @return POINTER = Ponteiro para os dados retornados
  *         FALSE   = Em caso de falha com a execução da query
  */
@@ -115,14 +65,19 @@ function sqlQuery($sql, array $pr = null)
 /**
  * Realiza a saída com retorno de código de erro http
  * 
- * @param $tbl  = TABELA que contém os dados
- * @param $colu = COLUNA nome da coluna com o valor ENUM
+ * @param $tbl   = TABELA que contém os dados
+ * @param $colum = COLUNA nome da coluna com o valor ENUM
+ * 
  * @return ARRAY = Array com todos os valores possíveis
  */
-function getenumval($tbl, $colu)
+function getenumval($tbl, $colum)
 {
     global $db;
-    $r=SqlQuery("SELECT SUBSTRING(COLUMN_TYPE,5) as v FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='thaila52_meet' AND TABLE_NAME='$tbl' AND COLUMN_NAME='$colu'");
+    $r=SqlQuery(
+        "SELECT SUBSTRING(COLUMN_TYPE,5) as v 
+        FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='".DBNAME."' 
+        AND TABLE_NAME='$tbl' AND COLUMN_NAME='$colum'"
+    );
     $l=$r->fetch(PDO::FETCH_ASSOC);
     $l=trim(trim($l['v'], "()"));
     $l=str_getcsv($l, ',', "'");

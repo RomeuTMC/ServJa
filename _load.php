@@ -5,7 +5,7 @@
  *  php version 7.4.3
  * 
  * @category PHP_SimplifiedFrameworkNoOOP
- * @package  BRASAP
+ * @package  BRASAP_AUTOLOADING
  * @author   Romeu Gomes de Sousa <romeugomes@gmail.com>
  * @license  GNU GPL 3.0 - Livre uso e Distribuição
  * @version  GIT:  

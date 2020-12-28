@@ -26,6 +26,11 @@ if (file_exists(__DIR__."/_controls/".$_SESSION['control']."_control.php")) {
         $_SESSION['erro']='CHAMADA PARA PROCEDIMENTO INVÁLIDO';
     }
 }
-phpinfo();
+for ($i=0; $i<1000000; $i++){
+    echo "x";
+    if (($i % 1000) == 0) {
+        echo "<br>";
+    }
+}
 _out("FINALIZADO COM SUCESSO", 200);
 ?>
