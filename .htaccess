@@ -10,7 +10,7 @@ Options -Indexes
 # Ativa o HTTPS para TODO O SITE
 #RewriteEngine On
 #RewriteCond %{SERVER_PORT} 80
-#RewriteRule ^(.*)$ https://servja.brasap.com.br/xoxota.php?route=$1 [R,L]
+#RewriteRule ^(.*)$ https://servja.brasap.com.br/index.php?route=$1 [R,L]
 
 # Ativa o ROUTER para URL AMIGAVEL
 Options +FollowSymLinks
