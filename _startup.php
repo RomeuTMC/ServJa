@@ -13,22 +13,34 @@
 
 //Se a autenticação não está feita, define explicitamante como falsa
 if (!isset($_SESSION['login'])) {
-    $_SESSION['login']=false;
+    $_SESSION['login']=0; //false
 }
 $_SESSION['server']=URL;
 $_SESSION['SSID']=SSID;
 $_SESSION['rtStart'] = microtime(true);
-
+$_SESSION['memoryStart'] = "MEMORY USAGE: ".
+    number_format((memory_get_usage(false)/1000), 2)."Kb / ".
+    number_format((memory_get_usage(true)/1000000), 2)."Mb";
 //Faz o ROUTE do CONTROL/VIEW
 if (isset($_GET['route'])) {
     $route = $_GET['route'];
     $route = explode('/', $route);
     $route = filter_var_array($route, FILTER_SANITIZE_URL);
 } else {
-    $route[0]='0';
+    $route[0] = 0;
 }
 $_SESSION['route']=$route;
-$_SESSION['control']='main';
-$_SESSION['view']=false;
-$_SESSION['action']=false;
+if ($route[0] == 0) {
+    $_SESSION['control']='main';
+} else {
+    $_SESSION['control']=$route[0];
+}
+// se foi incluido um modulo de banco_de dados, cria a conexão
+if (function_exists('conectDb')) {
+    $db = conectDb();
+} else {
+    $db = false;
+    _out('FALHA NA CONEXÃO COM UM BANCO DE DADOS', 200);
+}
+$_SESSION['title']=SISTEMA;
 ?>

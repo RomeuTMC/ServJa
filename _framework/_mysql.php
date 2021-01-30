@@ -63,7 +63,8 @@ function sqlQuery($sql, array $pr = null)
 }
 
 /**
- * Realiza a saída com retorno de código de erro http
+ * Realiza a consulta de valores válidos para campos salvos
+ *  em um campo ENUM, para a criação de selects ou drops em geral
  * 
  * @param $tbl   = TABELA que contém os dados
  * @param $colum = COLUNA nome da coluna com o valor ENUM
