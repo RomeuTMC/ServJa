@@ -1,1 +1,6 @@
 error_log
+_ERROS_PRO.LOG
+_ERROS_OUT.LOG
+_ERROS_HOM.LOG
+_ERROS_DEV.LOG
+_defs.php

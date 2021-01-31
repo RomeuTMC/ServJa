@@ -50,11 +50,11 @@ if (file_exists(__DIR__."/_controls/".$_SESSION['control']."_control.php")) {
             // cria a função para mostrar as mensagens de erro 
             // de usuário geradas no PHP
             var error_no = <?php 
-                if(isset($_SESSION['erro_no'])){
-                    echo $_SESSION['erro_no']; 
-                } else {
-                    echo "0" ;
-                }
+            if (isset($_SESSION['erro_no'])) {
+                echo $_SESSION['erro_no']; 
+            } else {
+                echo "0" ;
+            }
             ?>;
             if(error_no==1){ sTitulo='SUCESSO !'; sIcon='success'; }
             else if(error_no==2){ sTitulo='ERRO !';  sIcon='error';}
@@ -63,11 +63,11 @@ if (file_exists(__DIR__."/_controls/".$_SESSION['control']."_control.php")) {
             else if(error_no==5){ sTitulo='QUESTÃO !'; sIcon='question'; }
             else { error_no=0; sTitulo=''; sIcon=''; }
             var sMens = '<?php 
-                if(isset($_SESSION['erro'])){
-                    echo $_SESSION['erro']; 
-                } else {
-                    echo " " ;
-                }
+            if (isset($_SESSION['erro'])) {
+                echo $_SESSION['erro']; 
+            } else {
+                echo " " ;
+            }
             ?>';
                 if (error_no>0) {
                     Swal.fire({
@@ -81,25 +81,25 @@ if (file_exists(__DIR__."/_controls/".$_SESSION['control']."_control.php")) {
             </script>
         </header>
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-            <?php include "_menu.php"; ?>
+            <?php require "_menu.php"; ?>
         </nav>
         <section>
             <div class='main'>
                 <?php
                 //INCLUI CONFORME A CHAMADA DO ROTEAMENTO
                 if (file_exists(
-                    __DIR__."/_views/".$_SESSION['control'].
-                    '_'.$_SESSION['view']."_view.php"
+                    __DIR__."/_views/_".$_SESSION['control'].
+                    '/_'.$_SESSION['view']."_view.php"
                 )
                 ) {
-                    include_once __DIR__."/_views/".$_SESSION['control'].'_'.
+                    include_once __DIR__."/_views/_".$_SESSION['control'].'/_'.
                                 $_SESSION['view']."_view.php";
                 } else {
                     if (AMBIENTE == 'DEVELOPER') {
-                        echo "VIEW INEXISTENTE->".$_SESSION['control'].'_'.
+                        echo "VIEW INEXISTENTE->/_".$_SESSION['control'].'/_'.
                             $_SESSION['view']."_view.php";
                     } else {
-                        include_once __DIR__."/_views/main_index_"."_view.php";
+                        include_once __DIR__."/_views/_main/_index_"."_view.php";
                     }
                 }
                 ?>
