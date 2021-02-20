@@ -10,10 +10,10 @@
  * @version  GIT:  
  * @link     https://brasap.com.br
  */
-
+session_start();
 //Se a autenticação não está feita, define explicitamante como falsa
-if (!isset($_SESSION['login'])) {
-    $_SESSION['login']=0; //false
+if (!isset($_SESSION['logado'])) {
+    $_SESSION['logado'] = 0; //false
 }
 $_SESSION['server']=URL;
 $_SESSION['SSID']=SSID;
@@ -27,13 +27,7 @@ if (isset($_GET['route'])) {
     $route = explode('/', $route);
     $route = filter_var_array($route, FILTER_SANITIZE_URL);
 } else {
-    $route[0] = 0;
-}
-$_SESSION['route']=$route;
-if ($route[0] == 0) {
-    $_SESSION['control']='main';
-} else {
-    $_SESSION['control']=$route[0];
+    $route[0] = 'main';
 }
 // se foi incluido um modulo de banco_de dados, cria a conexão
 if (function_exists('conectDb')) {

@@ -12,6 +12,30 @@
     max-width: 100%;
 }
 /*
+  LOADER - TELA DE LOADING
+*/
+#loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10000;
+    background: rgba(0,0,0,0.85) url(../resources/imagens/loading.gif) no-repeat center center;
+    
+}
+.loadertitle {
+    z-index: 10001;
+    color: darkorange;
+    size: 7em !important;
+    padding-top: 18% !important;
+    font-weight: 900;
+    align-self: center;
+}
+
+/*
   FUNÇÕES E STYLES DO MENU DROPDOWN
 */
 @media (min-width: 992px){

@@ -43,7 +43,7 @@ $cookieParams['domain'] = URL;
 $cookieParams['secure'] = true; 
 $cookieParams['httponly'] = true; 
 $cookieParams['samesite'] = "Lax"; 
-session_set_cookie_params($cookieParams); 
+//session_set_cookie_params($cookieParams); 
 if (AMBIENTE == 'DEVELOPER') { 
     error_reporting(E_ALL); 
     ini_set("display_startup_errors", true);
@@ -66,10 +66,8 @@ if (AMBIENTE == 'DEVELOPER') {
     ini_set("error_log", _FS."_ERROS_PRO.LOG");
     ini_set("track_errors", false);
 } 
-ini_set("session.name", SSID); 
 session_name(SSID); 
 ini_set("log_errors", true);
 ini_set("default_charset", "UTF-8"); 
 ini_set("sendmail_from", EMAIL);
-session_start(); 
 ?>

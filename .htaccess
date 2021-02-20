@@ -91,3 +91,9 @@ RewriteRule ^(.*)$ index.php?route=$1 [NC,L]
 
 # DESABILITA o XSS para Cros-Site-Request
 Header always set Strict-Transport-Security max-age=31536000
+
+# Define os erros personalizados
+ErrorDocument 401 /ServJa/index.php?route=main/401
+ErrorDocument 403 /ServJa/index.php?route=main/403
+ErrorDocument 404 /ServJa/index.php?route=main/404
+ErrorDocument 500 /ServJa/index.php?route=main/500

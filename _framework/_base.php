@@ -11,6 +11,12 @@
  * @link     https://brasap.com.br
  */
 
+define('SUCESSO', 1); //MENSAGEM DE SUCESSO
+define('ERRO', 2); //MENSAGEM DE ERRO
+define('ALERT', 3); //MENSAGEM DE ALERTA
+define('INFO', 4); //MENSAGEM INFORMATIVA
+define('QUEST', 5); //MENSAGEM DE PERGUNTA
+
 /**
  * Realiza a saída com retorno de código de erro http
  * 
@@ -30,7 +36,7 @@ function _out($_msg, $excode = 200)
     $_SESSION['exec_time']="".round($time, '3')." - Segundos";
     $_SESSION['HTTP_ERRO']=$excode;
     $_SESSION['MENSAGEM']=$_msg;
-    error_log(date('Y-m-d h:i:s')." $_msg - $excode\n", 3, _FS.'/_ERROS_OUT.LOG');
+    error_log(date('Y-m-d h:i:s')." $_msg - $excode\n", 3, _FS.'_ERROS_OUT.LOG');
     if (AMBIENTE == 'DEVELOPER') {
         http_response_code($excode);
         echo "<h3>$_msg</h3>";
@@ -41,10 +47,12 @@ function _out($_msg, $excode = 200)
         print_r($_SESSION);
         echo "<br>POST=========================<br>";
         print_r($_POST);
-        echo "<br>GET=========================<br>";
-        print_r($_GET);
         echo "<br>FILES=======================<br>";
         print_r($_FILES);
+        echo "<br>INCLUDED_FILES==============<br>";
+        print_r(get_included_files());
+        echo "<br>GET=========================<br>";
+        print_r($_GET);
         echo "<br>COOKIE======================<br>";
         print_r($_COOKIE);
         echo "<br>SERVER======================<br>";
@@ -53,6 +61,12 @@ function _out($_msg, $excode = 200)
         print_r($_REQUEST);
         echo "<br>ENV=========================<br>";
         print_r($_ENV);
+        echo "<br>EXTENSIONS LOADED===========<br>";
+        print_r(get_loaded_extensions());
+        echo "<br>RESOURCES LOADED============<br>";
+        print_r(get_resources());
+        echo "<br>INIT DEFINITIONS============<br>";
+        print_r(ini_get_all());
         echo "<br>LAST ERROR =================<br>";
         if (isset($php_errormsg)) {
             print_r($php_errormsg);

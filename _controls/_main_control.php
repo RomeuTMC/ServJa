@@ -13,9 +13,7 @@
  */
 $perfil_usuario = logado();
 if (isset($route[1]) 
-    && file_exists(
-        __DIR__."/_views/".$_SESSION['control'].'_'.$route[1]."_view.php"
-    ) 
+    && file_exists(_FS."_views/_".$route[0].'/_'.$route[1]."_view.php")
 ) {
     $_SESSION['view'] = $route[1];
 } else {

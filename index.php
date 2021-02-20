@@ -14,14 +14,14 @@ require_once __DIR__.'/_defs.php'; //Definições do sistema e ambiente
 require_once __DIR__.'/_load.php'; //Load do FRAMEWORK e funções sobre demanda
 require_once __DIR__.'/_startup.php'; // Inicialização sessão/autenticação/validação
 // Executa o load do CONTROL requisitado pela URL
-if (file_exists(__DIR__."/_controls/".$_SESSION['control']."_control.php")) {
-    include_once __DIR__."/_controls/".$_SESSION['control']."_control.php";
+if (file_exists(__DIR__."/_controls/_".$route[0]."_control.php")) {
+    include_once __DIR__."/_controls/_".$route[0]."_control.php";
 } else {
     if (AMBIENTE == 'DEVELOPER') {
-        _out($_SESSION['control']."_control.php", 200);
+        _out("_".$route[0]."_control.php", 200);
     } else {
         $route[1] = '404';
-        include_once __DIR__."/_controls/main_control.php";
+        include_once __DIR__."/_controls/_main_control.php";
     }
 }
 // se o CONTROL não criou um redirecionamento, monta a estrutura base,
@@ -41,7 +41,7 @@ if (file_exists(__DIR__."/_controls/".$_SESSION['control']."_control.php")) {
 
     <body data-spy="scroll" data-target=".navbar" data-offset="170">
         <header>
-        <div id="loader" style="display: block;"></div>
+        <div id="loader" style="display: block;"><h1 class='loadertitle text-center display-1'>CARREGANDO</h1></div>
         <script>
             //Cria o SPINNER para fazer a tela de LOADING antes das chamadas AJAX
             var spinner = $('#loader');
@@ -68,6 +68,8 @@ if (file_exists(__DIR__."/_controls/".$_SESSION['control']."_control.php")) {
             } else {
                 echo " " ;
             }
+            unset($_SESSION['erro_no']);
+            unset($_SESSION['erro']);
             ?>';
                 if (error_no>0) {
                     Swal.fire({
@@ -88,15 +90,15 @@ if (file_exists(__DIR__."/_controls/".$_SESSION['control']."_control.php")) {
                 <?php
                 //INCLUI CONFORME A CHAMADA DO ROTEAMENTO
                 if (file_exists(
-                    __DIR__."/_views/_".$_SESSION['control'].
+                    __DIR__."/_views/_".$route[0].
                     '/_'.$_SESSION['view']."_view.php"
                 )
                 ) {
-                    include_once __DIR__."/_views/_".$_SESSION['control'].'/_'.
+                    include_once __DIR__."/_views/_".$route[0].'/_'.
                                 $_SESSION['view']."_view.php";
                 } else {
                     if (AMBIENTE == 'DEVELOPER') {
-                        echo "VIEW INEXISTENTE->/_".$_SESSION['control'].'/_'.
+                        echo "VIEW INEXISTENTE->/_".$route[0].'/_'.
                             $_SESSION['view']."_view.php";
                     } else {
                         include_once __DIR__."/_views/_main/_index_"."_view.php";

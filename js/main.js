@@ -1,3 +1,4 @@
+var spinner = $('#')
 //FUNÇÂO DO FECHA O MENSAGEM DE ERRO
 function close_erro() {
   var x = document.getElementById('derro');
@@ -28,3 +29,4 @@ $(document).ready(function() {
 	
 }); // jquery end
 //FIM DAS FUNÇÔES DO MENU
+
