@@ -16,4 +16,5 @@ require_once __DIR__.'/_framework/_base.php';
 require_once __DIR__.'/_framework/_mysql.php';
 require_once __DIR__.'/_framework/_forms.php';
 require_once __DIR__.'/_framework/_mail.php';
+require_once __DIR__.'/_framework/_extapis.php';
 ?>

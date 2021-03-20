@@ -17,15 +17,25 @@
  * @param $email     = URL - email_do_destinatario
  * @param $assunto   = String - Assunto do email
  * @param $file_html = basename - nome de um arquivo do diretório de emails
+ * @param $valores   = Array de variaveis para substituir o conteúdo de dentro do
+ *                   do html pelos valores passados em $vals
  * 
  * @return BOOLEAN - true para enviado / false para falha
  */
-function eMail($email, $assunto, $file_html)
+function eMail($email, $assunto, $file_html, $valores = array())
 {
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $header  = "MIME-Version: 1.0\r\n";
     $header .= "Content-type: text/html; charset=utf-8\r\n";
     $header .= "From: ".EMAIL_FROM."\r\n";
     $html=file_get_contents(__DIR__."/_framework/_mailfile/$file_html");
+    $vars = array_keys($valores);
+    foreach ($vars as &$v) {
+        //adiciona COLCHETES, retira ESPAÇOS e coloca os valores em MAIUSCULO
+        $v = '['.str_replace(' ', '_', strtoupper(trim($v))).']';
+    }
+    $vals = array_values($valores);
+    $html = str_replace($vars, $vals, $html);
     if (mail($email, $assunto, $html, $header, "-f ".EMAIL)) {
         return true;
     } else {

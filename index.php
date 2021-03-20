@@ -36,7 +36,13 @@ if (file_exists(__DIR__."/_controls/_".$route[0]."_control.php")) {
         <meta name="google-site-verification" 
             content="lwhjBq1Newn4vJWEU1Lx_0zaKWPWd4GlgDgg8PpPgL8" />
         <?php require_once "_dependencies.php"; ?>
-        <title><?php echo $_SESSION['title']; ?></title>
+        <title><?php 
+            if (isset($_SESSION['title'])) {
+                echo $_SESSION['title'];
+            } else {
+                echo SISTEMA;
+            }
+            ?></title>
     </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="170">

@@ -18,4 +18,5 @@ if (isset($route[1])
     $_SESSION['view'] = $route[1];
 } else {
     $_SESSION['view'] = 'index';
+    $_SESSION['title'] = SISTEMA;
 }

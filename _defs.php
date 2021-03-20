@@ -20,7 +20,7 @@ define(
     "Livre Uso e Distribução, se citada a fonte." 
 ); 
 define("URL", "http://127.0.0.1/ServJa/"); //URL da RAIZ do SISTEMA 
-define("_FS", "/home/daniel/DRIVE/SITES/ServJa/");
+define("_FS", "/DRIVE/SITES/ServJa/");
 define("EMAIL", "contato@brasap.com.br"); //Email do Servidor/Administrador 
 define("EMAIL_FROM", SISTEMA." <".EMAIL.">"); 
 define("SERVERDB", "127.0.0.1"); 
