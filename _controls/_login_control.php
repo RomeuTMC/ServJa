@@ -11,6 +11,7 @@
  * @version  GIT:  
  * @link     https://brasap.com.br
  */
+
 switch ($route[1]) {
 case 'login':
     //se usuário requisitou a tela LOGIN
@@ -79,6 +80,7 @@ case 'logout':
     $_SESSION['erro_no'] = SUCESSO;
     $_SESSION['erro'] = 'LOGOUT EFETUADO COM SUCESSO!';
     return;
+    break;
 case 'minhaconta':
     // se requisitou a tela de MINHA CONTA, VERIFICA SE LOGADO E LIBERA
     if ($_SESSION['logado'] <> '0') {
@@ -89,6 +91,7 @@ case 'minhaconta':
         $_SESSION['title'] = SISTEMA.' - LOGIN';
         return;
     }
+    break;
 case 'cadastro':
     // se chamou a tela de CADASTRO, verifica se não está logado e libera
     if ($_SESSION['logado'] != '0') {
@@ -106,6 +109,7 @@ case 'cadastro':
         $_SESSION['view']='criaconta';
         return;
     }
+    break;
 case 'criaconta':
     // se cadastro preenchido e enviado, vamos processar os dados
     $data=array(
@@ -161,7 +165,7 @@ case 'criaconta':
         $_SESSION['erro'] = 'Password - Deve conter pelo menos 1 caractere minusculo!';
         return;
     }
-    $sql = "SELECT id from usuarios_login where email = {$pr['login']}";
+    $sql = "SELECT id from usuarios_login where email = '{$pr['login']}'";
     $rs = sqlQuery($sql);
     if ($rs->rowCount()==0) {
         $_SESSION['view']='criaconta';
@@ -169,6 +173,7 @@ case 'criaconta':
         $_SESSION['erro'] = 'LOGIN - Este E-Mail já está cadastrado, por favor, utilize outro!';
         return;
     }
+
     
 default:
     //se não encontrou o método chamado, direciona para o 404
