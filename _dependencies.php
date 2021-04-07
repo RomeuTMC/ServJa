@@ -1,14 +1,15 @@
 <?php
+
 /**
  * BRASAP FRAMEWORK DEPENDENCIE FILE
  *  - INSIRA AS DEPENDÊNCIAS DE JAVASCRIPT / CSS GLOBAIS
  *  php version 7.4.3
- * 
+ *
  * @category PHP_SimplifiedFrameworkNoOOP
  * @package  BRASAP_AUTOLOADING
  * @author   Romeu Gomes de Sousa <romeugomes@gmail.com>
  * @license  GNU GPL 3.0 - Livre uso e Distribuição
- * @version  GIT:  
+ * @version  GIT:
  * @link     https://brasap.com.br
  */
 
@@ -35,7 +36,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" 
     crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" 
+    type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
     integrity="sha256-Kg2zTcFO9LXOc7IwcBx1YeUBJmekycsnTsq2RuFHSZU=" 
